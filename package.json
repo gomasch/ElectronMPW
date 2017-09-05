@@ -1,0 +1,37 @@
+{
+  "name": "electron-mpw",
+  "version": "1.0.0",
+  "description": "desktop master password application",
+  "main": "main.js",
+  "scripts": {
+    "build": "babel app --out-dir compiled",
+    "dist": "cross-env NODE_ENV=production browserify compiled/app.js -o dist/app_min.js -p [minifyify --no-map] --ignore-missing --detect-globals --node --no-builtins",
+    "predist": "npm run-script build",
+    "test": "mocha"
+  },
+  "repository": "none",
+  "keywords": [
+    "Electron",
+    "password-manager",
+    "password-generator",
+    "windows",
+    "macos"
+  ],
+  "author": "Martin Schmidt mail@gomasch.de",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "browserify": "^14.4.0",
+    "cross-env": "^5.0.5",
+    "minifyify": "^7.3.5",
+    "mocha": "^3.5.0"
+  },
+  "dependencies": {
+    "elementtree": "^0.1.7",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
