@@ -1,5 +1,3 @@
-start.sh
-start_create.sh
 node_modules/*
 compiled/*
 dist/*
