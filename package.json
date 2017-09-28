@@ -1,16 +1,9 @@
 {
   "name": "electron-mpw",
   "version": "1.0.0",
-  "description": "desktop master password application",
+  "description": "electron MWP desktop app",
   "main": "main.js",
-  "scripts": {
-    "build": "babel app --out-dir compiled",
-    "dist": "cross-env NODE_ENV=production browserify compiled/app.js -o dist/app_min.js -x electron --ignore-missing --detect-globals --node --no-builtins",
-    "predist": "npm run-script build",
-    "test": "mocha",
-    "start": "electron ."
-  },
-  "repository": "none",
+  "repository": "https://github.com/gomasch/ElectronMPW",
   "keywords": [
     "Electron",
     "password-manager",
@@ -20,6 +13,22 @@
   ],
   "author": "Martin Schmidt mail@gomasch.de",
   "license": "MIT",
+  "files": [
+    "dist/app_min.js",
+    "external/bootstrap.min.css",
+    "index.html",
+    "main.js",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "babel app --out-dir compiled",
+    "dist": "cross-env NODE_ENV=production browserify compiled/app.js -o dist/app_min.js -x electron --ignore-missing --detect-globals --node --no-builtins",
+    "predist": "npm run build",
+    "test": "mocha",
+    "start": "electron .",
+    "release": "rm -rf dist_el && mkdir dist_el && cd dist_el && npm pack .. && for f in *.tgz; do tar zxvf \"$f\"; rm \"$f\"; done && cd .. && ./node_modules/.bin/electron-packager ./dist_el/package --out dist_bin --overwrite",
+    "prerelease": "npm run dist"
+  }, 
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -28,6 +37,7 @@
     "browserify": "^14.4.0",
     "cross-env": "^5.0.5",
     "electron": "~1.7.8",
+    "electron-packager": "^9.1.0",
     "minifyify": "^7.3.5",
     "mocha": "^3.5.3"
   },

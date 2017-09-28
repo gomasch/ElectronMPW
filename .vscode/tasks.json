@@ -19,6 +19,12 @@
             "script": "test",
             "problemMatcher": [],
             "group": "build"
-        }
+        },
+        {
+            "type": "npm",
+            "script": "release",
+            "problemMatcher": [],
+            "group": "build"
+        }        
     ]
 }
