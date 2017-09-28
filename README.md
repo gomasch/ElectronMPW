@@ -1,6 +1,8 @@
-# Electron MPW Desktop App
+# Electron MPW
 
-This is an Electron based desktop app for managing passwords following the principle of "master password" from Maarten Billemont, Lyndir (http://masterpasswordapp.com/). This is an independent implementation from a different author following the published algorithm.
+This is an Electron based desktop app for managing passwords following the principle of "master password" from Maarten Billemont, Lyndir (http://masterpasswordapp.com/).
+
+This is an independent implementation from a different author following the published algorithm.
 
 Features:
 * Loads+saves configuration in XML, compatible with https://github.com/gomasch/DotNetMasterPassword.
