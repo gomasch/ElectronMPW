@@ -26,9 +26,9 @@
     "predist": "npm run build",
     "test": "mocha",
     "start": "electron .",
-    "release": "rm -rf dist_el && mkdir dist_el && cd dist_el && npm pack .. && for f in *.tgz; do tar zxvf \"$f\"; rm \"$f\"; done && cd .. && ./node_modules/.bin/electron-packager ./dist_el/package --out dist_bin --overwrite",
+    "release": "rm -rf dist_el && mkdir dist_el && cd dist_el && npm pack .. && for f in *.tgz; do tar zxvf \"$f\"; rm \"$f\"; done && cd .. && ./node_modules/.bin/electron-packager ./dist_el/package --out dist_bin --overwrite --icon=icon/mac/icon.icns",
     "prerelease": "npm run dist"
-  }, 
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "elementtree": "^0.1.7",
+    "node-icns": "0.0.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   }
