@@ -1,22 +1,18 @@
 // @ts-check
 
-// file access
+// dialog access
 const app = require('electron').remote;
 const dialog = app.dialog;
-const fs = require('fs');
 
-// xml parsing
-const et = require('elementtree');
-
-// React
+// react
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-// Logic
+// logic
 const Model = require('./model.js');
 const MpwAlgorithm = require('./algorithm.js');
 
-// User settings
+// user settings
 const Settings = require('./settings.js');
 const userSettings = new Settings({
     configName: 'user-preferences',
