@@ -138,7 +138,7 @@ class MergeRowsInteractive extends React.Component {
  */
 function Sites(props) {
     const filterText = props.filterText;
-    const selectSite = props.editSite;
+    const editSite = props.editSite;
     const selectedIndex = props.editSiteIndex;
     const unselectSite = props.stopEditSite;
     const sitePropertyChanged = props.sitePropertyChanged;
@@ -154,13 +154,13 @@ function Sites(props) {
         }
         found++;
         const editBtnCaption = index === selectedIndex ? "Done" : "Edit"
-        const siteRow = (<SiteRow key={index} site={site} index={index} selectSite={selectSite} btnName={editBtnCaption} calcPW={calcPW} pw={site.calculatedPW}
+        const siteRow = (<SiteRow key={index} site={site} index={index} editSite={editSite} btnName={editBtnCaption} calcPW={calcPW} pw={site.calculatedPW}
             sitePropertyChanged={props.sitePropertyChanged} />);
         if (index === selectedIndex) {
             return [
                 siteRow,
                 <SiteEditRow key={specialIndexForSelected} site={site} index={index}
-                    sitePropertyChanged={sitePropertyChanged} removeSite={props.removeSite} />
+                    sitePropertyChanged={sitePropertyChanged} removeSite={props.removeSite} doneEditSite={editSite} />
             ]; // we return multiple!
         }
         return siteRow;
@@ -265,7 +265,7 @@ function SiteRow(props) {
             <td>{PasswordTypeAsString[props.site.type]}</td>
             <td>{props.site.login}</td>
             <td style={fitToContentStyle}> <ShowPW value={props.site.calculatedPW} calcPW={props.calcPW} index={props.index} sitePropertyChanged={props.sitePropertyChanged} /> </td>
-            <td style={fitToContentStyle}><button onClick={props.selectSite} value={props.index} className="btn btn-default btn-sm">{props.btnName}</button>
+            <td style={fitToContentStyle}><button onClick={props.editSite} value={props.index} className="btn btn-default btn-sm">{props.btnName}</button>
             </td>
         </tr>);
 }
@@ -291,6 +291,7 @@ function EditSiteDetails(props) {
             <EditSiteType label="Type" value={props.site.type} index={props.index} name="type" sitePropertyChanged={props.sitePropertyChanged} />
             <EditSiteTextField label="Login" value={props.site.login} index={props.index} name="login" sitePropertyChanged={props.sitePropertyChanged} />
             <button onClick={props.removeSite} className="btn btn-danger pull-right" value={props.index}>Delete</button>
+            <button onClick={props.doneEditSite} value={props.index} className="btn btn-default pull-right">Done</button>
         </form>
     );
 }
