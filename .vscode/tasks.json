@@ -25,6 +25,12 @@
             "script": "release",
             "problemMatcher": [],
             "group": "build"
-        }        
+        },
+        {
+            "type": "npm",
+            "script": "release_win",
+            "problemMatcher": [],
+            "group": "build"
+        }                
     ]
 }
