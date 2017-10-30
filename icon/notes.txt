@@ -3,7 +3,7 @@ created by Martin Schmidt 2017 with Affinity Designer 1.5.5
 export 1024x1024 with transparent background
 
 Mac:
-npm install node-icns
+npm install --no-save node-icns
 ../node_modules/.bin/nicns --in appicon.png --out mac/icon.icns
 
 Windows:
