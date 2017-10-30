@@ -15,7 +15,7 @@ Techniques:
 * Uses emscripten-compiled SCRYPT implementation from https://github.com/tonyg/js-scrypt
 * Main editor/IDE was VSCode.
 
-![Screenshot](screenshot.png?raw=true "Screenshot MAC")
+![Screenshot](screenshot.png "Screenshot MAC")
 
 ## Motivation
 On iPhone I am using the original app from Maarten Billemont. For the desktop I didn't like the original Java app and decided 2015 to build simple desktop apps for Win+Mac with C#. The result can be found at https://github.com/gomasch/DotNetMasterPassword.
