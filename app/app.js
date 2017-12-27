@@ -501,7 +501,7 @@ class App extends React.Component {
     // logic
     render() {
         // window title
-        var title = "Electron - Masterpassword";
+        var title = "Electron MPW";
         title = this.state.validFileName ? title + " - " + this.state.validFileName : title;
         if (this.state.unsavedChanges) title += " *";
         document.title = title;
