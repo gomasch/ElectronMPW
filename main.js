@@ -1,6 +1,9 @@
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
+const Menu = electron.Menu
+
+
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
@@ -11,9 +14,12 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({ width: 800, height: 600 })
+
+  // where to store settings? be independent of productName in package.json
+  app.setPath('userData', path.join(app.getPath('appData'), "electron-mpw"));
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -32,6 +38,42 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  // Check if we are on a MAC
+  if (process.platform === 'darwin') {
+    // Create our menu entries so that we can use MAC shortcuts
+    if (Menu) {
+      Menu.setApplicationMenu(Menu.buildFromTemplate([
+        {
+          label: "MPW",
+          submenu: [
+            {role: 'about'},
+            {type: 'separator'},
+            {role: 'services', submenu: []},
+            {type: 'separator'},
+            {role: 'hide'},
+            {role: 'hideothers'},
+            {role: 'unhide'},
+            {type: 'separator'},
+            {role: 'quit'}
+          ]
+        },
+        {
+          label: 'Edit',
+          submenu: [
+            { role: 'undo' },
+            { role: 'redo' },
+            { type: 'separator' },
+            { role: 'cut' },
+            { role: 'copy' },
+            { role: 'paste' },
+            { role: 'delete' },
+            { role: 'selectall' }
+          ]
+        }
+      ]));
+    }
+  }
 }
 
 // This method will be called when Electron has finished
@@ -44,7 +86,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   //if (process.platform !== 'darwin') {
-    app.quit()
+  app.quit()
   //}
 })
 
