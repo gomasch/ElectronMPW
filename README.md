@@ -9,11 +9,11 @@ Features:
 * Import 2nd file with manual merge
 * Simple search
 
-Techniques:
+Technology:
 * Pure Javascript with Electron.  
 * UI with React and Bootstrap.
 * Uses emscripten-compiled SCRYPT implementation from https://github.com/tonyg/js-scrypt
-* Main editor/IDE was VSCode.
+* Main editor/IDE VSCode.
 
 ![Screenshot](screenshot.png "Screenshot MAC")
 
@@ -22,9 +22,9 @@ On iPhone I am using the original app from Maarten Billemont. For the desktop I 
 
 When trying to add some features (import, search) later in 2017, I grew uncomfortable with the C# solution and took that as an excuse to explore a completely new (and new-to-me) stack: build a cross plattform UI app with Electron, Javascript and HTML. It worked suprisingly well. I was especially pleased with npm, React and the speed of emscripten-based js-scrypt.
 
-## Open Issues
+## Changelog and open issues
 
-While the current state is already providing value for me there is lot's of room for improvement. Especially creating and managing releases and switching to a custom menu is on the list.
+See CHANGELOG.md and TODO.md.
 
 ## About
 
