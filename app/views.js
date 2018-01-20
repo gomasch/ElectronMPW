@@ -150,7 +150,12 @@ function Sites(props) {
     const sites = props.sites.map((site, index) => {
         if (site.site.indexOf(filterText) === -1) {
             // not found (doesn't apply when filter text is empty)
-            return;
+            if (index === selectedIndex) {
+                // we're editing this site, don't hide
+            } else {
+                // not found and we're not editing, hide it, don't add
+                return;
+            }
         }
         found++;
         const editBtnCaption = index === selectedIndex ? "Done" : "Edit"
