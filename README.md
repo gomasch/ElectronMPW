@@ -26,6 +26,18 @@ When trying to add some features (import, search) later in 2017, I grew uncomfor
 
 See CHANGELOG.md and TODO.md.
 
+## How to build and test
+
+Prepare
+* Get sources.
+* Have Node.js with NPM 5.x installed.
+* Run "npm install" to get dependencies.
+
+Build, Test, Run
+* Run "npm run dist" to compile the sources and run "npm start" to start the development Electron instance. Consider to modify index.html and main.js during development.
+* Run "npm run test" to run the unit tests.
+* Run "npm run release_mac" on macOS and "npm run release_win" (on Windows) to create a binary package (see created dist_bin folder).
+
 ## About
 
 AUTHOR<br>
