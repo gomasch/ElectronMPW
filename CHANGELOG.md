@@ -2,7 +2,7 @@
 All notable changes to this project shall be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-# [Unreleased]
+# [1.0.1.0] - 2018-02-25
 ## Added
 - added this changelog file
 - added standard menu for Mac to support copy/paste shortcuts, this also adds a basic about dialog
