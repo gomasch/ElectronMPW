@@ -53,8 +53,8 @@ function immutableRemovePropertyFromArray(array, propertyName) {
 }
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = this.getDefaultState();
 
         // These bindings are necessary to make `this` work in the callbacks
