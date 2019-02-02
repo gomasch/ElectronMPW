@@ -1,5 +1,6 @@
 # Todos
 ## Features
+- [ ] Replace modal message boxes with non modal info boxes for successful saving
 - [ ] File menu for shortcuts (alt/ctrl-s for save etc.)
 - [ ] Ask "Do you want to save changes" when attempting to close with unsaved changes
 
