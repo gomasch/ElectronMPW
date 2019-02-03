@@ -233,7 +233,7 @@ class ShowPW extends React.Component {
         }
         var display = this.state.hover ? value : Array(value.length + 1).join('*'); // show only when hovered with mouse, otherwise replace with aterisks
 
-        const fixedWidthStyle = { 'fontF^amily': 'monospace' }; // prevent width change for mouse over with fixed width font
+        const fixedWidthStyle = { 'fontFamily': 'monospace' }; // prevent width change for mouse over with fixed width font
         return (<span className="pull-right">
             <span onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} style={fixedWidthStyle}>{display} </span>
             <button onClick={this.copyToClipboard} className="btn btn-default btn-sm">Copy</button>
