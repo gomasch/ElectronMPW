@@ -29,7 +29,7 @@
     "start": "electron .",
     "release_mac": "rm -rf dist_el && mkdir dist_el && cd dist_el && npm pack .. && for f in *.tgz; do tar zxvf \"$f\"; rm \"$f\"; done && cd .. && ./node_modules/.bin/electron-packager ./dist_el/package --out dist_bin --overwrite --icon=icon/mac/icon.icns",
     "prerelease_mac": "npm run dist",
-    "release_win": "rmdir /Q /S dist_el & mkdir dist_el & cd dist_el && npm pack .. && \"%ProgramFiles%\\7-Zip\\7z.exe\" x *.tgz && \"%ProgramFiles%\\7-Zip\\7z.exe\" x *.tar && del *.tar *.tgz && cd .. && .\\node_modules\\.bin\\electron-packager .\\dist_el\\package --out dist_bin --overwrite --icon=icon/win/icon.ico",
+    "release_win": "rmdir /Q /S dist_el & rmdir /Q /S dist_bin & mkdir dist_el & cd dist_el && npm pack .. && \"%ProgramFiles%\\7-Zip\\7z.exe\" x *.tgz && \"%ProgramFiles%\\7-Zip\\7z.exe\" x *.tar && del *.tar *.tgz && cd .. && .\\node_modules\\.bin\\electron-packager .\\dist_el\\package --out dist_bin --overwrite --icon=icon/win/icon.ico",
     "prerelease_win": "npm run dist"
   },
   "devDependencies": {
