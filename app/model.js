@@ -47,7 +47,7 @@ function Site(site, counter, type, login) {
 /**
  * read and parse XML file
  * @param {string} filepath path to file
- * @param {function(string, Configuration)} errDataCallback receives the data or the error msg
+ * @param {function(string, Configuration):void} errDataCallback receives the data or the error msg
  */
 function ReadFromFile(filepath, errDataCallback) {
     const callback = errDataCallback;
@@ -64,7 +64,7 @@ function ReadFromFile(filepath, errDataCallback) {
                 ]
             };
             var etree = et.parse(data);
-            newConfig.user = etree.find("UserName").text;
+            newConfig.user = etree.find("UserName").text.toString();
             var sites = etree.findall('Sites/Site');
             var site;
             for (site of sites) {
@@ -86,7 +86,8 @@ function ReadFromFile(filepath, errDataCallback) {
  * read and parse XML file
  * @param {string} filepath path to file
  * @param {Configuration} config data so save
- * @param {function(NodeJS.ErrnoException)} errCallback callback for error reporting, null when all OK
+ * @param {function(NodeJS.ErrnoException):void} errCallback callback for error reporting, null when all OK
+ * @returns void
  */
 function SaveToFile(filepath, config, errCallback) {
     var root = et.Element("MasterPassword");

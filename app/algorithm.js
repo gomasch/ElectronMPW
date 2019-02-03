@@ -15,7 +15,7 @@ const scrypt_module_factory = require('./../external/js-scrypt/scrypt.js');
  * @param {string} siteName 
  * @param {Number} counter 
  * @param {String} typeOfPassword from model.SupportedPasswordTypes
- * @param {function(string, string)} callback (err, calculatedPassword)
+ * @param {function(string, string|void):void} callback (err, calculatedPassword)
 */
 function AllSteps(userName, masterPassword, siteName, counter, typeOfPassword, callback) {
     CalcMasterKey(userName, masterPassword, function (err, masterKey) {
@@ -39,7 +39,7 @@ function AllSteps(userName, masterPassword, siteName, counter, typeOfPassword, c
  * Create Master Key
  * @param {string} userName 
  * @param {string} masterPassword
- * @param {function(string, Uint8Array)} callback (err, data)
+ * @param {function(string, Uint8Array):void} callback (err, data)
  */
 function CalcMasterKey(userName, masterPassword, callback) {
     var masterBytes = encode_utf8(masterPassword);
@@ -55,7 +55,7 @@ function CalcMasterKey(userName, masterPassword, callback) {
  * @param {Uint8Array} masterkey 
  * @param {string} siteName 
  * @param {Number} counter 
- * @param {function(string, Uint8Array)} callback (err, data)
+ * @param {function(string, Uint8Array):void} callback (err, data)
  */
 function CalcTemplateSeed(masterkey, siteName, counter, callback) {
     var key = masterkey;
@@ -73,16 +73,20 @@ function CalcTemplateSeed(masterkey, siteName, counter, callback) {
                 name: "SHA-256"
             }
         }, false/*not extractable*/, ["sign"])
-        .then(function (wKey) {
-            var b = window.crypto.subtle.sign({
-                name: "HMAC",
-                hash: {
-                    name: "SHA-256"
-                }
-            }, wKey, data)
-                .then(result => callback(null, new Uint8Array(result)))
-                .catch(err => callback(err, null));
-        }).catch(err => callback(err, null));
+        .then(
+            function (wKey) {
+                var b = window.crypto.subtle.sign({
+                    name: "HMAC",
+                    hash: {
+                        name: "SHA-256"
+                    }
+                }, wKey, data)
+                    .then(
+                        result => callback(null, new Uint8Array(result)),
+                        err => callback(err, null));
+            }, 
+            err => callback(err, null)
+        );
 }
 
 /**

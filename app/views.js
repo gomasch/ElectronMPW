@@ -87,8 +87,8 @@ function MergePreview(props) {
 }
 
 class MergeRowsInteractive extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { show: false };
         this.toggle = this.toggle.bind(this);
     }
@@ -203,8 +203,8 @@ function FoundCount(props) {
  * Show password: as aterisks unless mouse hovers. with Copy and CalcPW buttons.
  */
 class ShowPW extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { hover: false };
         this.mouseOver = this.mouseOver.bind(this);
         this.mouseOut = this.mouseOut.bind(this);
