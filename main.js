@@ -10,11 +10,61 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
-const menu = require('./app/menu.js')
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+
+/**
+ * Create the standard menu
+ * @param {BrowserWindow} mainWindow 
+ */
+function StandardMenu(mainWindow) {
+  return [
+  {
+    label: '&File',
+    submenu: [
+      {
+          label: '&New',
+          accelerator: 'CmdOrCtrl+N',
+          click: () => mainWindow.webContents.send("new-file")
+      },
+      {
+          label: 'Import',
+          click: (e) => mainWindow.webContents.send("import")
+      },
+      {type: 'separator'},
+      {
+          label: '&Open…',
+          accelerator: 'CmdOrCtrl+O',
+          click: (e) => mainWindow.webContents.send("open")
+      },
+      {
+          label: '&Save',
+          accelerator: 'CmdOrCtrl+S',
+          click: (e) => mainWindow.webContents.send("save")
+      },
+      {
+          label: 'Sa&ve As…',
+          accelerator: 'CmdOrCtrl+Shift+S',
+          click: (e) => mainWindow.webContents.send("saveAs")
+      }
+    ]
+  },
+  {
+    label: 'Edit',
+    submenu: [
+      { role: 'undo' },
+      { role: 'redo' },
+      { type: 'separator' },
+      { role: 'cut' },
+      { role: 'copy' },
+      { role: 'paste' },
+      { role: 'delete' },
+      { role: 'selectall' }
+    ]
+  }
+];
+}
 
 function createWindow() {
   // Create the browser window.
@@ -45,7 +95,7 @@ function createWindow() {
   if (process.platform === 'darwin') {
     // Create our menu entries so that we can use MAC shortcuts
     if (Menu) {
-      Menu.setApplicationMenu(Menu.buildFromTemplate(menu.StandardMenu(mainWindow).unshift( 
+      Menu.setApplicationMenu(Menu.buildFromTemplate(StandardMenu(mainWindow).unshift( 
         [{
           label: "MPW",
           submenu: [
@@ -65,7 +115,8 @@ function createWindow() {
   else {
     // windows
     if (Menu) {      
-      Menu.setApplicationMenu(Menu.buildFromTemplate(menu.StandardMenu(mainWindow)));      
+      mainWindow.setAutoHideMenuBar(true);
+      Menu.setApplicationMenu(Menu.buildFromTemplate(StandardMenu(mainWindow)));
     }
   }
   

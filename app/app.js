@@ -94,7 +94,7 @@ class App extends React.Component {
         this.importApplyFromNewer = this.importApplyFromNewer.bind(this);    
         this.importApplyFromConflicts = this.importApplyFromConflicts.bind(this);
 
-        // see menu.js for what menu fires
+        // see menu definition in main.js for what is fired when
         const dummyEvent = { preventDefault: () => { } };
         ipcRenderer.on("new-file", () => this.newFile(dummyEvent));
         ipcRenderer.on("import", () => this.importFile(dummyEvent));
