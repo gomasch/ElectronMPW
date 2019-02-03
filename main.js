@@ -10,6 +10,8 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+const menu = require('./app/menu.js')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -43,8 +45,8 @@ function createWindow() {
   if (process.platform === 'darwin') {
     // Create our menu entries so that we can use MAC shortcuts
     if (Menu) {
-      Menu.setApplicationMenu(Menu.buildFromTemplate([
-        {
+      Menu.setApplicationMenu(Menu.buildFromTemplate(menu.StandardMenu(mainWindow).unshift( 
+        [{
           label: "MPW",
           submenu: [
             {role: 'about'},
@@ -57,23 +59,16 @@ function createWindow() {
             {type: 'separator'},
             {role: 'quit'}
           ]
-        },
-        {
-          label: 'Edit',
-          submenu: [
-            { role: 'undo' },
-            { role: 'redo' },
-            { type: 'separator' },
-            { role: 'cut' },
-            { role: 'copy' },
-            { role: 'paste' },
-            { role: 'delete' },
-            { role: 'selectall' }
-          ]
-        }
-      ]));
+        }]))); // use standard menu and add an App menu at the beginning
     }
   }
+  else {
+    // windows
+    if (Menu) {      
+      Menu.setApplicationMenu(Menu.buildFromTemplate(menu.StandardMenu(mainWindow)));      
+    }
+  }
+  
 }
 
 // This method will be called when Electron has finished

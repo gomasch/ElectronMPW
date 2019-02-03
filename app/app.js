@@ -6,8 +6,10 @@
 // @ts-check
 
 // dialog access
-const app = require('electron').remote;
+const electron = require('electron');
+const app = electron.remote;
 const dialog = app.dialog;
+const ipcRenderer = electron.ipcRenderer;
 
 // react
 const React = require('react');
@@ -55,6 +57,7 @@ function immutableRemovePropertyFromArray(array, propertyName) {
 class App extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = this.getDefaultState();
 
         // These bindings are necessary to make `this` work in the callbacks
@@ -89,7 +92,15 @@ class App extends React.Component {
         this.importCancel = this.importCancel.bind(this);
         this.importApplyFromAdded = this.importApplyFromAdded.bind(this);
         this.importApplyFromNewer = this.importApplyFromNewer.bind(this);    
-        this.importApplyFromConflicts = this.importApplyFromConflicts.bind(this);                        
+        this.importApplyFromConflicts = this.importApplyFromConflicts.bind(this);
+
+        // see menu.js for what menu fires
+        const dummyEvent = { preventDefault: () => { } };
+        ipcRenderer.on("new-file", () => this.newFile(dummyEvent));
+        ipcRenderer.on("import", () => this.importFile(dummyEvent));
+        ipcRenderer.on("open", () => this.openFile(dummyEvent));
+        ipcRenderer.on("save", () => this.saveFile(dummyEvent));
+        ipcRenderer.on("saveAs", () => this.saveAsFile(dummyEvent));
     }
 
     // helper
