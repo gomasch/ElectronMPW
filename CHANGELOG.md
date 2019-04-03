@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - file menu on win+mac with keyboard shortcuts for open and save etc.
 ## Changed
 - updated all packages, electron is now 4.0.4
+- back to normal font style for calculated pw (is not monospace anymore)
 ## Fixed
 - fixed saving the user settings: typically the folder wasn't there and this threw an exception (happened on first start because the default path is changed and the save code did not try to create the missing directories, now it does)
 
