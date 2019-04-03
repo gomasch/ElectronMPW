@@ -34,7 +34,7 @@ Prepare
 * Run "npm install" to get dependencies.
 
 Build, Test, Run
-* Run "npm run dist" to compile the sources and run "npm start" to start the development Electron instance. Consider to modify index.html and main.js during development.
+* Run "npm run dist" to compile the sources and run "npm start" to start the development Electron instance. Consider to modify index.html and main.js during development. For example you can uncomment "mainWindow.webContents.openDevTools();" in main.js.
 * Run "npm run test" to run the unit tests.
 * Run "npm run release_mac" on macOS and "npm run release_win" (on Windows) to create a binary package (see created dist_bin folder).
 
